@@ -1,10 +1,39 @@
-# Specifying an R environment with a runtime.txt file
-
-Jupyter+R: [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/binder-examples/r/master?filepath=index.ipynb)
+# Example Specifying an R environment with a runtime.txt file
 
 RStudio: [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/binder-examples/r/master?urlpath=rstudio)
 
-RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/binder-examples/r/master?urlpath=shiny/bus-dashboard/)
+Jupyter+R: [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/binder-examples/r/master?filepath=index.ipynb)
+
+This is modified for a demo in the KCNI School from an example template at: https://github.com/binder-examples/r
+
+It is referenced in the KCNI-school-lessons repository
+
+## There are two files in this repo that make this binder compatible
+
+- `runtime.txt`: tells binder what version of R to use ([see more](#specifying-r-version))
+- `install.R`: tells binder what R packages to install ([see more](#specifying-packages-with-installr))
+
+### URL addresses for RStudio and Shiny environments
+
+The only other thing your need to do is add a binder URL to your README.md so your people can navigate to your binder instance in their browser.
+
+*The URL you tell participants to navigate too will determine what they see.*
+
+All/most binder instances have both jupyter and rstudio installed in the environment. However, the "default" view when you look at binder is to open jupyter...
+
+```
+http://mybinder.org/v2/gh/<github-user>/<github-repo>/<branch>
+```
+  - For this repo this is: http://mybinder.org/v2/gh/krembilneuroinformatics/example-r-repo/HEAD
+
+BUT we would rather see the rstudio verion.. 
+
+- For the RStudio environment, we must add the following at the end of the URL: `?urlpath=rstudio`
+
+  - Example: http://mybinder.org/v2/gh/krembilneuroinformatics/example-r-repo/HEAD?urlpath=rstudio
+  
+
+## specifying R version
 
 Binder supports using R and RStudio, with libraries pinned to a specific 
 snapshot on [MRAN](https://mran.microsoft.com/documents/rro/reproducibility).
@@ -24,9 +53,10 @@ r-<YYYY>-<MM>-<DD>
 where YYYY-MM-DD is a snapshot at MRAN that will be used for installing 
 libraries. In this line, you can request a [specific 
 version of R](https://github.com/jupyter/repo2docker/pull/772#issue-313426641). To do this list the version between the 'r' 
-and the year, as in `r-3.6-2019-09-24`. Right now the default version of R is 3.6.
+and the year, as in `r-4.0-2021-06-21`. 
 
-> We recommend using https://github.com/binder-examples/r-conda for faster installs than using a `install.R`
+
+## Specifying packages with `install.R`
 
 To install R libraries (or packages) you can add an [`install.R`](install.R) file that specifies one library to install per line.
 
@@ -34,22 +64,8 @@ Both [RStudio](https://www.rstudio.com/) and [IRKernel](https://irkernel.github.
 are installed by default, so you can use either the Jupyter notebook interface or
 the RStudio interface.
 
-This repository also contains an example of a [Shiny app](https://github.com/binder-examples/r/tree/master/bus-dashboard).
+It is also possible to load Shiny apps. An example of a [Shiny app](https://github.com/binder-examples/r/tree/master/bus-dashboard).
 
-### URL addresses for RStudio and Shiny environments
+## Final note
 
-The Binder repository can be used to allow anyone to access an RStudio environment containing our code and data right 
-in their web browser. It also allows hosting a Shiny app. For those purposes, we have to append a bit of text to the 
-URL of our Binder repository, which we can find out at [mybinder.org](https://mybinder.org/) when we enter 
-the URL of our original repository from GitHub or Figshare, etc.
-
-- For the RStudio environment, we must add the following at the end of the URL: `?urlpath=rstudio`
-
-  - Example: http://mybinder.org/v2/gh/binder-examples/r/master?urlpath=rstudio
-  
-- For the Shiny app environment, we must add the following at the end of the URL: `?urlpath=shiny`. In this case, we 
-also have to note that if the Shiny app files are located in a folder, this folder should be specified in the URL, 
-after a slash. We would then also have to put in a trailing slash at the end of the URL, and to avoid spaces in the 
-name of the repository, placing instead a hyphen (the reason is that spaces are converted to `%20`).
-
-  - Example: http://mybinder.org/v2/gh/binder-examples/r/master?urlpath=shiny/bus-dashboard/
+To clean things up, you can move `install.R` and `runtime.txt` info a hidden directory `.binder` and everything still works the same. :)
