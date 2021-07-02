@@ -1,0 +1,56 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+  html_notebook:
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+## Load Libraries
+```{r setup}
+#knitr::opts_chunk$set(include = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+```
+
+## Different coding language
+In the R notebook different coding languages can be used such as bash
+```{bash}
+ls
+```
+## Demo Data
+Use built in R datasets, esoph. Data from a case-control study of esophageal cancer in Ille-et-Vilaine, France
+Is a data frame with records of 88 indvidals with their alcohol and tobacco status, and how many cases of noncases in each combination catorgey
+```{r summary(esoph), echo=TRUE}
+summary(esoph)
+```
+## Demo Question
+Which age group has the highest number of alcohol consumption that are cases?
+
+### Base R code example 
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+case_df1a <- esoph[c("agegp","alcgp","ncases")]  #select variables 
+case_df1b <- case_df1a[order(case_df1a$ncases, decreasing = TRUE),] #reorder in decreasing
+kable(head(case_df1b))
+```
+
+### Tidyverse R code example 
+```{r echo=TRUE}
+case_df2 <- esoph  %>% select(c(agegp,alcgp,ncases)) %>% arrange(desc(ncases)) 
+kable(head(case_df2))
+```
+
+## Demo Plot
+Tidyverse plot the number of cases in each Alcohol Consumption group by ages 
+```{r esoph, echo=TRUE}
+ggplot(case_df2,aes(x=alcgp, y=ncases, fill=agegp)) +
+        geom_bar(position="dodge", stat="identity") +
+        xlab("Alcohol Consumption") + ylab("Number of Cases") +
+        labs(fill = "Age Group")
+```
+
