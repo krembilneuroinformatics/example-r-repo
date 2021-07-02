@@ -46,11 +46,11 @@ kable(head(case_df2))
 ```
 
 ## Demo Plot
-Tidyverse plot the number of cases in each Alcohol Consumption group by ages 
+The number of cases in each Alcohol Consumption group by ages 
 ```{r esoph, echo=TRUE}
 ggplot(case_df2,aes(x=alcgp, y=ncases, fill=agegp)) +
         geom_bar(position="dodge", stat="identity") +
-        xlab("Alcohol Consumption") + ylab("Number of Cases") +
+        xlab("Alcohol Consumption (g/day)") + ylab("Number of Cases") +
         labs(fill = "Age Group")
 ```
 

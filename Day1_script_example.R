@@ -5,6 +5,7 @@ library(ggplot2)
 ## Demo Data
 #Use built in R datasets, esoph. Data from a case-control study of esophageal cancer in Ille-et-Vilaine, France
 #Is a data frame with records of 88 indvidals with their alcohol and tobacco status, and how many cases of noncases in each combination catorgey
+data("esoph")
 summary(esoph)
 
 ## Demo Question:
@@ -19,10 +20,10 @@ head(case_df1b,row.names = F)
 case_df2 <- esoph  %>% select(c(agegp,alcgp,ncases)) %>% arrange(desc(ncases)) 
 head(case_df2)
 
-#Tidyverse plot the number of cases in each Alcohol group by ages 
+#The number of cases in each Alcohol group by ages 
 ggplot(case_df2,aes(x=alcgp, y=ncases, fill=agegp)) +
         geom_bar(position="dodge", stat="identity") +
-        xlab("Alcohol Consumption") + ylab("Number of Cases") +
+        xlab("Alcohol Consumption (g/day)") + ylab("Number of Cases") +
         labs(fill = "Age Group")
 
 
