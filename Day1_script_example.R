@@ -4,7 +4,7 @@ library(ggplot2)
 
 ## Demo Data
 #Use built in R datasets, esoph. Data from a case-control study of esophageal cancer in Ille-et-Vilaine, France
-#Is a data frame with records of 88 indvidals with their alcohol and tobacco status, and how many cases of noncases in each combination catorgey
+#Is a data frame with records of 88 individuals with their alcohol and tobacco status, and how many cases of noncases in each combination category
 data("esoph")
 summary(esoph)
 
