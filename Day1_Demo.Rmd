@@ -30,7 +30,7 @@ Is a data frame with records of 88 individuals with their alcohol and tobacco st
 summary(esoph)
 ```
 ## Demo Question
-Which age group has the highest number of alcohol consumption that are cases?
+Which age group has the highest number of cases under alcohol consumption?
 
 ### Base R code example 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
